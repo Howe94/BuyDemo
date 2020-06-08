@@ -1,62 +1,50 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'   //类型检查
-import { connect } from 'react-redux'
-import { createStore } from 'redux'
-
+import Table from '../../components/table'
+import Form from '../../components/form'
 import './index.scss'
-// 定义counter组件
-class Counter extends Component {
-    render() {
-      const { value, onIncreaseClick } = this.props
-      return (
-        <div>
-          <span>{value}</span>
-          <button onClick={onIncreaseClick}> +1</button>
-        </div>
-      )
+export default class index extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      head: [
+        { header: "姓名" },
+        { header: "工作岗位" },
+        {header:"操作"}
+      ],
+      body: [
+        {
+          name: "豪宗超",
+          job:"前端开发工程师"
+        },
+        {
+          name: "豪宗超",
+          job:"前端开发工程师"
+        }
+      ]
     }
   }
-  //对Counter组件接受的props进行类型检查
-  Counter.propTypes = {
-    value: PropTypes.number.isRequired,   //要求数字类型，没有提供会警告
-    onIncreaseClick: PropTypes.func.isRequired //要求函数类型
+  removeTr = (index) => {
+    const state = this.state
+    this.setState({
+      body: state.body.filter((item, ind) => {
+        return ind !== index
+      })
+    })
   }
-  
-  // Action  
-  const increaseAction = { type: 'increase' }
-  
-  // Reducer   基于原有state根据action得到新的state
-  function counter(state = { count: 0 }, action) {
-    const count = state.count
-    switch (action.type) {
-      case 'increase':
-        return { count: count + 1 }
-      default:
-        return state
-    }
+  handelSubmit = (form) => {
+    const state = this.state
+    this.setState({
+      // body:this.state.body.concat(form)//对象合并
+      //解构赋值      
+      body:[...this.state.body,form]
+    })
   }
-  
-  // 根据reducer函数通过createStore()创建store
-  const store = createStore(counter)
-  
-  //  将state映射到Counter组件的props
-  function mapStateToProps(state) {
-    return {
-      value: state.count
-    }
+  render() {
+    return (
+      <div className="table-name">
+        <Table Head={this.state.head} Body={this.state.body} removeTr={this.removeTr} />
+        <Form handelSubmit={this.handelSubmit}/>
+      </div>
+    )
   }
-  
-  //  将action映射到Counter组件的props
-  function mapDispatchToProps(dispatch) {
-    return {
-      onIncreaseClick: () => dispatch(increaseAction)
-    }
-  }
-  
-
-
-//  传入上面两个函数参数，将Home组件变为App组件
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Counter)
+}

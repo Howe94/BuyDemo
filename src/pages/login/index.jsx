@@ -1,31 +1,34 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import './index.scss'
+function mapStateToProps(state) {
+  return {
 
-const Login = (props) => {
+  };
+}
+
+class index extends Component {
+  render() {
     return (
-      <div>
-        <button onClick={() => {
-          props.changeText('按钮被点击了');
-        }}
-        >
-          {props.btnText}
-        </button>
+      <div className="login-container">
+        <div className="login-title">
+          登录
+        </div>
+        <div className="login-form-content">
+          <form action="#">
+            <div className="user-name">
+              <label htmlFor="">用户名：<input type="text" name="userName" id="userName"/></label>
+            </div>
+            <div className="user-password">
+              <label htmlFor="">密码：<input type="password" name="password" id="password"/></label>
+            </div>
+          </form>
+        </div>
       </div>
     );
-  };
-  // 映射store.getState()的数据到PageMain
-  const mapStateToProps = (state) => {
-    return {
-      btnText: state.pageMain.btnText,
-    };
-  };
-  // 映射使用了store.dispatch的函数到 PageMain
-  const mapDispatchToProps = (dispatch) => {
-    return {
-      changeText: (text) => {
-        dispatch(changeBtnText(text));
-      }
-    };
-  };
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(Login);
+  }
+}
+
+export default connect(
+  mapStateToProps,
+)(index);
