@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-
+import store from '../store'
+import {addItem} from "../store/actionCreator";
 export default class form extends Component {
     constructor(props) {
         super(props);
-        // this.state = {
-
-        // }
         this.initValue = {
             name: "",
             job: ""
@@ -18,10 +16,12 @@ export default class form extends Component {
         })
     }
     addNewInfo = (e) => {
-        this.props.handelSubmit(this.state)
-        this.setState(this.initValue
-        )
+        this.addItem()
+        this.setState(this.initValue)
     }
+    addItem() {
+        store.dispatch(addItem(this.state));
+	}
     render() {
         return (
             <div className="editForm">
