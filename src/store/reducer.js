@@ -28,11 +28,11 @@ export default (state = defaultState, action) => {
     if (action.type === "delete_list") {
         //拷贝数据，官方不推荐直接修改state，因拷贝出来修改之后再赋值回去
         let newState = deepCopy(state);
-        // newState.jobList.splice(action.val,1)
-        newState = newState.jobList.filter((item, ind) => {
-            // return ind !== action.val;
+        newState.jobList.splice(action.val,1)
+        // newState = newState.jobList.filter((item, ind) => {
+        //     // return ind !== action.val;
             
-        })
+        // })
         return newState
     }
     return state;  //最终拿到返回的newState

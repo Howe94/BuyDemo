@@ -26,9 +26,7 @@ export default class index extends Component {
     this.setState({
       // body:this.state.body.concat(form)//对象合并
       //解构赋值 
-
       body: [...this.state.body, form]
-
     })
   }
   changeStore = () => {
@@ -41,7 +39,6 @@ export default class index extends Component {
     // console.log(index)
     store.dispatch(deleteItem(index));
     console.log(store.getState().jobList);
-    
 }
 
   render() {
