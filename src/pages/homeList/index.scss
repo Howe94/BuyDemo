@@ -1,0 +1,13 @@
+.home-list-container{
+    width: 960px;
+    margin: 20px auto;
+    .ant-layout{
+        background: none;
+        .ant-layout-sider{
+            max-width: 300px !important;
+            min-width: 300px !important;
+            width: 300px !important;
+            background: none;
+        }
+    }
+}

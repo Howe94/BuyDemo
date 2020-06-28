@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Head from '../../components/header'
+import HomeList from '../homeList/index'
 
 export default class index extends Component {
     constructor(props) {
@@ -11,7 +12,8 @@ export default class index extends Component {
     render() {
         return (
             <div className="app-container">
-                <Head />
+                <Head history={this.props.history} />
+                <HomeList></HomeList>
             </div>
         )
     }
