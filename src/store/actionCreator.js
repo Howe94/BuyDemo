@@ -11,3 +11,8 @@ export const deleteItem = (val) => ({
 	type: 'delete_list',  //这里的type要匹配上reducer
 	val: val //这个是数据
 });
+//注册弹框标识 DialogShow
+export const DialogShow = (val) => ({
+	type: 'dialog_show',  //这里的type要匹配上reducer
+	val: val //这个是数据
+});

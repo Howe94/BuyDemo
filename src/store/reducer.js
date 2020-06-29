@@ -6,7 +6,8 @@ let defaultState = {
             job: '前端开发工程师'
         }
     ],
-    a:[]
+    a: [],
+    visiable: false,//注册弹框显示标识
 
 }
 
@@ -35,5 +36,13 @@ export default (state = defaultState, action) => {
         // })
         return newState
     }
+    if (action.type === "dialog_show") {
+        //拷贝数据，官方不推荐直接修改state，因拷贝出来修改之后再赋值回去
+        let newState = deepCopy(state);
+        newState.visiable = action.val
+        return newState
+    }
+
+    
     return state;  //最终拿到返回的newState
 }
