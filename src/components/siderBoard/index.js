@@ -79,7 +79,10 @@ class index extends Component {
         }
     }
     changOtherAuthers() {
-        document.getElementsByClassName("anticon-sync")[0].children[0].setAttribute('class','anticon-spin');
+        document.getElementsByClassName("anticon-sync")[0].children[0].setAttribute('class', 'anticon-spin');
+        setTimeout(() => {
+            document.getElementsByClassName("anticon-sync")[0].children[0].removeAttribute('class', 'anticon-spin')
+        },1000)
     }
     render() {
 
