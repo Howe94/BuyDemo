@@ -34,7 +34,7 @@ class index extends Component {
   changeVisiable(value) {
     console.log(value)
     this.setState({
-      visiable:value
+      visiable: value
     })
   }
   showSonPage() {
@@ -45,24 +45,26 @@ class index extends Component {
   render() {
     return (
       <div className="login-container">
-        <div className="login-title">
-          登录
+        <div className="logo">
+          BLOG
         </div>
-        <div className="login-form-content">
-          <form action="#">
-            <div className="user-name">
-              <label htmlFor="">用户名：<input type="text" name="userName" id="userName" value={this.state.userForm.userName} onChange={this.handelChange.bind(this)} /></label>
-            </div>
-            <div className="user-password">
-              <label htmlFor="">密码：<input type="password" name="password" id="password" value={this.state.userForm.password} onChange={this.handelChange.bind(this)} /></label>
-            </div>
-            <div className="login-submit">
-              <input type="button" value="登录" onClick={this.submit.bind(this)} />
-              <input type="button" value="注册" onClick={()=>this.changeVisiable(true)} />
-            </div>
-          </form>
+        <div className="main">
+          <div className="login-form-content">
+            <form action="#">
+              <div className="user-name">
+                <label htmlFor="">用户名：<input type="text" name="userName" id="userName" value={this.state.userForm.userName} onChange={this.handelChange.bind(this)} /></label>
+              </div>
+              <div className="user-password">
+                <label htmlFor="">密码：<input type="password" name="password" id="password" value={this.state.userForm.password} onChange={this.handelChange.bind(this)} /></label>
+              </div>
+              <div className="login-submit">
+                <input type="button" value="登录" onClick={this.submit.bind(this)} />
+                <input type="button" value="注册" onClick={() => this.changeVisiable(true)} />
+              </div>
+            </form>
+          </div>
         </div>
-            {this.showSonPage()}
+        {this.showSonPage()}
       </div>
     );
   }

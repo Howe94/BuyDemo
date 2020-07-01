@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
 import ArticleList from '../../components/articleList/index'
+import SiderBoard from '../../components/siderBoard/index'
 import './index.scss'
 const { Sider, Content } = Layout;
 
@@ -19,7 +20,9 @@ class index extends Component {
                     <Content>
                         <ArticleList></ArticleList>
                     </Content>
-                    <Sider>右侧边栏</Sider>
+                    <Sider>
+                        <SiderBoard></SiderBoard>
+                    </Sider>
                 </Layout>
             </div>
         );

@@ -1,0 +1,34 @@
+.board{
+    .board-top{
+        button{
+            width: 100%;
+            height: 40px;
+            margin-bottom: 10px;
+        }
+
+    }
+    .recommendAuthor{
+        .title{
+            .change-other{
+                float: right;
+            }
+            
+        }
+        .author-list{
+            margin-top: 20px;
+            .avatar{
+                float: left;
+                width: 48px;
+                height: 48px;
+                margin-right: 10px;
+            }
+            .name{
+                color: #333;
+            }
+            a:nth-of-type(2){
+                float: right;
+                color: #42c02e;
+            }
+        }
+    }
+}

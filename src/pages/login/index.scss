@@ -1,10 +1,22 @@
-.login-container{
-    width: 500px;
-    margin: 50px auto;
+@import "../../assets/style/theme.scss";
+.login-container {
     text-align: center;
-    background: #f7f7f7;
-    border-radius: 6px;
-    .user-name,.user-password{
-        
+    .logo {
+        font-size: 25px;
+        font-weight: bolder;
+        color: $color-primary;
+        position: absolute;
+        top: 56px;
+        margin-left: 50px;
+    }
+    .main {
+        width: 400px;
+        margin: 60px auto 0;
+        padding: 50px 50px 30px;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        vertical-align: middle;
+        display: inline-block;
     }
 }
