@@ -9,7 +9,7 @@ export default class header extends Component {
             <div className="main-container">
                 <div className="container">
                     <div className="container-item logo-container">
-                        <h1 onClick={() => this.props.history.push("/home")}>BOLG</h1>
+                        <h1 onClick={() => this.props.history.push("/home")}>HOWE</h1>
                     </div>
                     <div className="container-item search-container">
                         <>

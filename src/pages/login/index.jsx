@@ -1,9 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import VisiableDiv from '../../components/visiableDiv'
+import { Form, Input, Button, Checkbox } from 'antd';
 import './index.scss'
+const FormItem = Form.Item;
 
+const layout = {
+  labelCol: { span: 8 },
+  wrapperCol: { span: 16 },
+};
+const tailLayout = {
+  wrapperCol: { offset: 8, span: 16 },
+};
+const onFinish = values => {
+  console.log('Success:', values);
+};
 
+const onFinishFailed = errorInfo => {
+  console.log('Failed:', errorInfo);
+};
 class index extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +30,8 @@ class index extends Component {
       visiable: false
     }
   }
+  
+  
   handelChange = (e) => {
     // let userForm = Object.assign({},this.state.userForm,{[e.target.name]:e.target.value})
     this.setState({
@@ -37,34 +54,46 @@ class index extends Component {
       visiable: value
     })
   }
-  showSonPage() {
-    return (
-      this.state.visiable ? (<VisiableDiv changeVisiable={(value) => this.changeVisiable(value)}></VisiableDiv>) : null
-    )
-  }
+
   render() {
+
     return (
       <div className="login-container">
-        <div className="logo">
-          BLOG
+        <div className="logo" onClick={() => this.props.history.push("/app")}>
+          HOWE
         </div>
         <div className="main">
           <div className="login-form-content">
-            <form action="#">
-              <div className="user-name">
-                <label htmlFor="">用户名：<input type="text" name="userName" id="userName" value={this.state.userForm.userName} onChange={this.handelChange.bind(this)} /></label>
-              </div>
-              <div className="user-password">
-                <label htmlFor="">密码：<input type="password" name="password" id="password" value={this.state.userForm.password} onChange={this.handelChange.bind(this)} /></label>
-              </div>
-              <div className="login-submit">
-                <input type="button" value="登录" onClick={this.submit.bind(this)} />
-                <input type="button" value="注册" onClick={() => this.changeVisiable(true)} />
-              </div>
-            </form>
+            <Form
+              {...layout}
+              name="basic"
+              initialValues={{ remember: true }}
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
+            >
+              <FormItem
+                label="用户名"
+                name="username"
+                rules={[{ required: true, message: '请输入您的账户名!' }]}
+              >
+                <Input />
+              </FormItem>
+
+              <FormItem
+                label="密码"
+                name="password"
+                rules={[{ required: true, message: '请输入您的密码!' }]}
+              >
+                <Input.Password />
+              </FormItem> 
+              <FormItem {...tailLayout}>
+                <Button type="primary" htmlType="submit">
+                  Submit
+                </Button>
+              </FormItem>
+            </Form>
           </div>
         </div>
-        {this.showSonPage()}
       </div>
     );
   }
