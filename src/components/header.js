@@ -22,8 +22,8 @@ export default class header extends Component {
                         </>
                     </div>
                     <div className="container-item right-container">
-                        <Button type="text" size="large" onClick={() => this.props.history.push("/login")}>登录</Button>
-                        <Button type="primary" shape="round" size="large">注册</Button>
+                        <Button type="text" size="large" onClick={() => this.props.history.push("/sign/sign-in")}>登录</Button>
+                        <Button type="primary" shape="round" size="large" onClick={() => this.props.history.push("/sign/sign-up")}>注册</Button>
                         <Button type="primary" shape="round" size="large">写文章</Button>
                     </div>
                 </div>

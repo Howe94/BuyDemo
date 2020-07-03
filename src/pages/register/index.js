@@ -83,7 +83,7 @@ class index extends Component {
               </FormItem> 
               <FormItem {...tailLayout}>
                 <Button type="primary" htmlType="submit">
-                  登录
+                  注册
                 </Button>
               </FormItem>
             </Form>

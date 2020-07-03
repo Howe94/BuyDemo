@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import LoginBody from '../login/index'
+import RegisterBody from '../register/index'
 import './index.scss'
 class index extends Component {
     constructor(props) {
@@ -9,15 +12,36 @@ class index extends Component {
                 userName: '',
                 password: ''
             },
-            visiable: false
+            visiable: false,
+            isSignFlag: false,
         }
     }
-
+    componentWillMount() {
+        // console.log(this.props.history.location.pathname)
+        this.setState({
+            isSignFlag: this.props.history.location.pathname === '/sign/sign-in' ? true : false
+        })
+    }
+    isSignIN = (path) => {
+        if (path === '/sign/sign-in') {
+            this.setState({
+                isSignFlag: true
+            })
+            this.props.history.push("/sign/sigin-in")
+            return true;
+        } else {
+            this.setState({
+                isSignFlag: false
+            })
+            this.props.history.push("/sign/sigin-up")
+            return false
+        }
+    }
 
     render() {
 
         return (
-            <div className="login-container">
+            <div className="sign-container">
                 <div className="logo" onClick={() => this.props.history.push("/app")}>
                     HOWE
             </div>
@@ -25,10 +49,16 @@ class index extends Component {
                     <div className="sign-content">
                         <h2 className="sign-title">
                             <div className="title">
-                                <a href="#" className="sign-in">登录</a>
-                                <a href="#" className="sign-up">注册</a>
+                                <p className={`sign-in ${this.state.isSignFlag ? 'sigin-active' : ''}`} onClick={this.isSignIN.bind(this, "/sign/sign-in")}>登录</p>
+                                <p className={`sign-up ${!this.state.isSignFlag ? 'sigin-active' : ''}`} onClick={this.isSignIN.bind(this, "/sign/sigin-up")}>注册</p>
                             </div>
-
+                            <div>
+                                <Switch>
+                                    <Route path="/sign/sign-in" component={LoginBody} />
+                                    <Route path="/sign/sigin-up" component={RegisterBody} />
+                                    <Redirect to={this.state.isSignFlag ? "/sign/sign-in" : "/sign/sigin-up"} />
+                                </Switch>
+                            </div>
                         </h2>
                     </div>
                 </div>
