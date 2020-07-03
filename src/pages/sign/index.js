@@ -13,7 +13,7 @@ class index extends Component {
                 password: ''
             },
             visiable: false,
-            isSignFlag: false,
+            isSignFlag: false,//路由跳转登录注册标识 true:登录
         }
     }
     componentWillMount() {
@@ -52,14 +52,15 @@ class index extends Component {
                                 <p className={`sign-in ${this.state.isSignFlag ? 'sigin-active' : ''}`} onClick={this.isSignIN.bind(this, "/sign/sign-in")}>登录</p>
                                 <p className={`sign-up ${!this.state.isSignFlag ? 'sigin-active' : ''}`} onClick={this.isSignIN.bind(this, "/sign/sigin-up")}>注册</p>
                             </div>
-                            <div>
-                                <Switch>
-                                    <Route path="/sign/sign-in" component={LoginBody} />
-                                    <Route path="/sign/sigin-up" component={RegisterBody} />
-                                    <Redirect to={this.state.isSignFlag ? "/sign/sign-in" : "/sign/sigin-up"} />
-                                </Switch>
-                            </div>
                         </h2>
+                        <div className="sign-body">
+                            <Switch>
+                                <Route path="/sign/sign-in" component={LoginBody} />
+                                <Route path="/sign/sigin-up" component={RegisterBody} />
+                                <Redirect to={this.state.isSignFlag ? "/sign/sign-in" : "/sign/sigin-up"} />
+                            </Switch>
+                        </div>
+
                     </div>
                 </div>
             </div>

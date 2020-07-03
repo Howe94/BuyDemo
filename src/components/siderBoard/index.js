@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Avatar, Button, Spin } from 'antd';
+import { Avatar, Button } from 'antd';
 import {
     PlusOutlined,
     SyncOutlined
@@ -22,11 +22,11 @@ function Content(props) {
     const contentItem = props.authList.map((item, index) => {
         return (
             <div className="author-list" key={index}>
-                <a href="#" className="avatar">
+                <a href={item.authSrc} className="avatar">
                     <Avatar src={item.avatar} size={48} />
                 </a>
-                <a><PlusOutlined /> 关注</a>
-                <a href="#" className="name">
+                <a href="http://localhost:3000/#/sign/sign-in"><PlusOutlined /> 关注</a>
+                <a href={item.authSrc} className="name">
                     {item.name}
                 </a>
                 <p>粉丝量{item.fanNum}人</p>
@@ -58,22 +58,26 @@ class index extends Component {
                 {
                     avatar: 'https://upload.jianshu.io/users/upload_avatars/7290998/f64f5ef0-def0-4b26-beb3-b9d88f060ba0.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp',
                     name: '念远坏人',
-                    fanNum: '232121'
+                    fanNum: '232121',
+                    authSrc:"https://www.jianshu.com/u/51b4ef597b53?utm_source=desktop&utm_medium=index-users"
                 },
                 {
                     avatar: 'https://upload.jianshu.io/users/upload_avatars/7290998/f64f5ef0-def0-4b26-beb3-b9d88f060ba0.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp',
                     name: '念远坏人',
-                    fanNum: '232121'
+                    fanNum: '232121',
+                    authSrc:"https://www.jianshu.com/u/51b4ef597b53?utm_source=desktop&utm_medium=index-users"
                 },
                 {
                     avatar: 'https://upload.jianshu.io/users/upload_avatars/7290998/f64f5ef0-def0-4b26-beb3-b9d88f060ba0.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp',
                     name: '念远坏人',
-                    fanNum: '232121'
+                    fanNum: '232121',
+                    authSrc:"https://www.jianshu.com/u/51b4ef597b53?utm_source=desktop&utm_medium=index-users"
                 },
                 {
                     avatar: 'https://upload.jianshu.io/users/upload_avatars/7290998/f64f5ef0-def0-4b26-beb3-b9d88f060ba0.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp',
                     name: '念远坏人',
-                    fanNum: '232121'
+                    fanNum: '232121',
+                    authSrc:"https://www.jianshu.com/u/51b4ef597b53?utm_source=desktop&utm_medium=index-users"
                 }
             ]
         }

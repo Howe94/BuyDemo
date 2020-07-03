@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import VisiableDiv from '../../components/visiableDiv'
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 import './index.scss'
 const FormItem = Form.Item;
 
@@ -42,7 +41,7 @@ class index extends Component {
     })
   }
   submit = () => {
-    if (this.state.userForm.userName != 'haozch' || this.state.userForm.password != '123456') {
+    if (this.state.userForm.userName !== 'haozch' || this.state.userForm.password !== '123456') {
       window.confirm("账户密码有误！")
     } else {
       window.confirm("登录成功！")
@@ -82,7 +81,7 @@ class index extends Component {
                 <Input.Password />
               </FormItem> 
               <FormItem {...tailLayout}>
-                <Button type="primary" htmlType="submit">
+                <Button type="primary" shape="round" size="large" htmlType="submit">
                   登录
                 </Button>
               </FormItem>

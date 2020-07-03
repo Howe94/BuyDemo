@@ -1,7 +1,10 @@
 @import "../../assets/style/theme.scss";
 @import "~antd/dist/antd.css";
 .sign-container {
+    min-width: 1200px;
+    max-width: 1400px;
     text-align: center;
+    margin: 0 auto;
     .logo {
         font-size: 50px;
         font-weight: bolder;
@@ -12,7 +15,7 @@
     }
     .main {
         width: 400px;
-        margin: 60px auto 0;
+        margin: 130px auto 0;
         padding: 50px 50px 30px;
         background-color: #fff;
         border-radius: 4px;
@@ -37,6 +40,9 @@
                         color: #409EFF;
                     }
                 }
+            }
+            .sign-body{
+
             }
         }
     }

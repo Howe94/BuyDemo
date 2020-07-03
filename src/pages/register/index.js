@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import VisiableDiv from '../../components/visiableDiv'
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 import './index.scss'
 const FormItem = Form.Item;
 
@@ -42,7 +41,7 @@ class index extends Component {
     })
   }
   submit = () => {
-    if (this.state.userForm.userName != 'haozch' || this.state.userForm.password != '123456') {
+    if (this.state.userForm.userName !== 'haozch' || this.state.userForm.password !== '123456') {
       window.confirm("账户密码有误！")
     } else {
       window.confirm("登录成功！")
@@ -58,7 +57,7 @@ class index extends Component {
   render() {
 
     return (
-      <div className="login-container">
+      <div className="register-container">
             <Form
               {...layout}
               name="basic"
@@ -67,22 +66,28 @@ class index extends Component {
               onFinishFailed={onFinishFailed}
             >
               <FormItem
-                label="用户名"
+                label="昵称"
                 name="username"
-                rules={[{ required: true, message: '请输入您的账户名!' }]}
+                rules={[{ required: true, message: '请输入您的昵称!' }]}
               >
                 <Input />
               </FormItem>
-
               <FormItem
-                label="密码"
+                label="手机号"
+                name="telPhone"
+                rules={[{ required: true, message: '请输入您的手机号!' }]}
+              >
+                <Input />
+              </FormItem>
+              <FormItem
+                label="设置密码"
                 name="password"
                 rules={[{ required: true, message: '请输入您的密码!' }]}
               >
                 <Input.Password />
               </FormItem> 
               <FormItem {...tailLayout}>
-                <Button type="primary" htmlType="submit">
+                <Button type="primary" shape="round" size="large" htmlType="submit">
                   注册
                 </Button>
               </FormItem>

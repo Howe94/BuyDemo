@@ -1,5 +1,5 @@
 @import "../../assets/style/theme.scss";
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
 .login-container {
     text-align: center;
     .logo {
@@ -19,5 +19,10 @@
         box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
         vertical-align: middle;
         display: inline-block;
+    }
+    .ant-btn-primary {
+        background: #187cb7;
+        width: 140px;
+        border: none;
     }
 }
