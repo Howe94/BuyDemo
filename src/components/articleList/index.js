@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 import './index.scss'
 
 function ArticleList(props) {
@@ -72,6 +73,17 @@ class index extends Component {
             ],
 
         }
+    }
+    
+    componentWillMount() {
+        axios({
+            method: "get",
+            url:"/article/getArticleList"
+        }).then(result => {
+            console.log(result)
+        }).catch(error => {
+            return error;
+        })
     }
     render() {
         return (
