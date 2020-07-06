@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Button } from 'antd';
+// 先引入组件
+import { loginClick } from '../../api/Api';
 import './index.scss'
 const FormItem = Form.Item;
 
@@ -30,6 +32,7 @@ class index extends Component {
     }
   }
   
+
   
   handelChange = (e) => {
     // let userForm = Object.assign({},this.state.userForm,{[e.target.name]:e.target.value})
@@ -41,11 +44,21 @@ class index extends Component {
     })
   }
   submit = () => {
-    if (this.state.userForm.userName !== 'haozch' || this.state.userForm.password !== '123456') {
-      window.confirm("账户密码有误！")
-    } else {
-      window.confirm("登录成功！")
-    }
+    // 使用
+    let loginInfo = {
+      method: 'POST',
+      data: this.state.userForm
+      }
+      loginClick(loginInfo).then((response) => {
+        console.log(response)
+      }).catch((error)=>{
+        console.log(error)
+      })
+    // if (this.state.userForm.userName !== 'haozch' || this.state.userForm.password !== '123456') {
+    //   window.confirm("账户密码有误！")
+    // } else {
+    //   window.confirm("登录成功！")
+    // }
   }
   changeVisiable(value) {
     console.log(value)
@@ -81,7 +94,7 @@ class index extends Component {
                 <Input.Password />
               </FormItem> 
               <FormItem {...tailLayout}>
-                <Button type="primary" shape="round" size="large" htmlType="submit">
+                <Button type="primary" shape="round" size="large" htmlType="submit" onClick = {this.submit.bind(this)}>
                   登录
                 </Button>
               </FormItem>

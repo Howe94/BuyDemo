@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import { getArticleClick } from '../../api/Api'
 import './index.scss'
 
 function ArticleList(props) {
@@ -9,7 +10,7 @@ function ArticleList(props) {
                 {item.imgflag ? (
                     <div className="haveimg">
                         <a href="http://localhost:3000/#/sign/sign-in" className="wrap-img">
-                            <img src="https://upload-images.jianshu.io/upload_images/15992237-0f8b7cb161a15ba0.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240" alt="120"></img>
+                            <img src={item.imgUrl} alt="120"></img>
                         </a>
                         <div className="article-content">
                             <span className="article-title">{item.title}</span>
@@ -33,57 +34,33 @@ class index extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataList: [
-                {
-                    id: 'fafdaf',
-                    title: '文章标题哈',
-                    summary: '三毛说：“一个朋友很好，两个朋友就多了一点，三个朋友就未免太多了。 知音，能有一个已经很好了，不必太多，如果实在没有，还有自己，好好对待自己...',
-                    imgflag: false
-                },
-                {
-                    id: 'afa',
-                    title: '文章标题哈',
-                    summary: '三毛说：“一个朋友很好，两个朋友就多了一点，三个朋友就未免太多了。 知音，能有一个已经很好了，不必太多，如果实在没有，还有自己，好好对待自己...',
-                    imgflag: true
-                },
-                {
-                    id: 'afdafa',
-                    title: '文章标题哈',
-                    summary: '文章内三毛说：“一个朋友很好，两个朋友就多了一点，三个朋友就未免太多了。 知音，能有一个已经很好了，不必太多，如果实在没有，还有自己，好好对待自己..',
-                    imgflag: true
-                },
-                {
-                    id: 11,
-                    title: '文章标题哈',
-                    summary: '文章内容三毛说：“一个朋友很好，两个朋友就多了一点，三个朋友就未免太多了。 知音，能有一个已经很好了，不必太多，如果实在没有，还有自己，好好对待自己...',
-                    imgflag: false
-                },
-                {
-                    id: 4564561,
-                    title: '文章标题哈',
-                    summary: '文章内容哈三毛说：“一个朋友很好，两个朋友就多了一点，三个朋友就未免太多了。 知音，能有一个已经很好了，不必太多，如果实在没有，还有自己，好好对待自己...',
-                    imgflag: true
-                },
-                {
-                    id: 445645,
-                    title: '文章标题哈',
-                    summary: '文章内容三毛说：“一个朋友很好郝总超，两个朋友就多了一点，三个朋友就未免太多了。 知音，能有一个已经很好了，不必太多，如果实在没有，还有自己，好好对待自己...',
-                    imgflag: false
-                }
-            ],
+            dataList: [],
 
         }
     }
     
     componentWillMount() {
-        axios({
-            method: "get",
-            url:"/article/getArticleList"
-        }).then(result => {
-            console.log(result)
-        }).catch(error => {
-            return error;
-        })
+        // axios({
+        //     method: "get",
+        //     url:"/article/getArticleList"
+        // }).then(result => {
+        //     if (result.status == "200") {
+        //         this.setState({
+        //             dataList: result.data.data
+        //         })
+        //     }
+        // }).catch(error => {
+        //     return error;
+        // })
+        let articleInfo = {
+            method: 'GET',
+            // data: this.state.userForm
+            }
+            getArticleClick(articleInfo).then((response) => {
+              console.log(response)
+            }).catch((error)=>{
+              console.log(error)
+            })
     }
     render() {
         return (
