@@ -31,9 +31,9 @@ class index extends Component {
       visiable: false
     }
   }
-  
 
-  
+
+
   handelChange = (e) => {
     // let userForm = Object.assign({},this.state.userForm,{[e.target.name]:e.target.value})
     this.setState({
@@ -43,22 +43,21 @@ class index extends Component {
       }
     })
   }
+  //登录信息提交
   submit = () => {
-    // 使用
+    // TODO 校验通过
     let loginInfo = {
       method: 'POST',
       data: this.state.userForm
+    }
+    loginClick(loginInfo).then((response) => {
+      // console.log("登录成功")
+      if (response.status === '200') {
+        this.props.history.push("/app")
       }
-      loginClick(loginInfo).then((response) => {
-        console.log(response)
-      }).catch((error)=>{
-        console.log(error)
-      })
-    // if (this.state.userForm.userName !== 'haozch' || this.state.userForm.password !== '123456') {
-    //   window.confirm("账户密码有误！")
-    // } else {
-    //   window.confirm("登录成功！")
-    // }
+    }).catch((error) => {
+      console.log(error)
+    })
   }
   changeVisiable(value) {
     console.log(value)
@@ -66,40 +65,49 @@ class index extends Component {
       visiable: value
     })
   }
+  // 字段校验规则
+  checkUserName(rule,value,callback) {
+    const reg = /^[a-zA-Z0-9_\ue00-\u9fa5]+$/;
+    if (!reg.test(value)) {
+      console.log("登录校验失败")
+      return Promise.reject('仅允许输入汉字、字母、数字和下划线')
+    }
+  }
 
   render() {
-
     return (
       <div className="login-container">
-            <Form
-              {...layout}
-              name="basic"
-              initialValues={{ remember: true }}
-              onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
-            >
-              <FormItem
-                label="用户名"
-                name="username"
-                rules={[{ required: true, message: '请输入您的账户名!' }]}
-              >
-                <Input />
-              </FormItem>
+        <Form
+          {...layout}
+          name="basic"
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+        >
+          <FormItem
+            label="用户名"
+            name="username"
+            rules={[{ required: true, message: '请输入您的账户名!' }, {
+              validator:this.checkUserName.bind(this)
+            }]}
+          >
+            <Input name="userName" value={this.state.userForm.userName} onChange={this.handelChange.bind(this)} />
+          </FormItem>
 
-              <FormItem
-                label="密码"
-                name="password"
-                rules={[{ required: true, message: '请输入您的密码!' }]}
-              >
-                <Input.Password />
-              </FormItem> 
-              <FormItem {...tailLayout}>
-                <Button type="primary" shape="round" size="large" htmlType="submit" onClick = {this.submit.bind(this)}>
-                  登录
+          <FormItem
+            label="密码"
+            name="password"
+            rules={[{ required: true, message: '请输入您的密码!' }]}
+          >
+            <Input.Password name="password" value={this.state.userForm.password} onChange={this.handelChange.bind(this)} />
+          </FormItem>
+          <FormItem {...tailLayout}>
+            <Button type="primary" shape="round" size="large" htmlType="submit" onClick={this.submit.bind(this)}>
+              登录
                 </Button>
-              </FormItem>
-            </Form>
-          </div>
+          </FormItem>
+        </Form>
+      </div>
     );
   }
 }

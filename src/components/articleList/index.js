@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import { getArticleClick } from '../../api/Api'
 import './index.scss'
 
 function ArticleList(props) {
     const articleList = props.dataList.map((item, index) => {
         return (
-            <li key={index}>
+            <li key={index}> 
                 {item.imgflag ? (
                     <div className="haveimg">
                         <a href="http://localhost:3000/#/sign/sign-in" className="wrap-img">
@@ -17,7 +16,6 @@ function ArticleList(props) {
                             <p className="abstract">{item.summary}</p>
                         </div>
                     </div>
-
                 ) : (
                         <div className="article-content">
                             <span className="article-title">{item.title}</span>
@@ -38,29 +36,18 @@ class index extends Component {
 
         }
     }
-    
+
     componentWillMount() {
-        // axios({
-        //     method: "get",
-        //     url:"/article/getArticleList"
-        // }).then(result => {
-        //     if (result.status == "200") {
-        //         this.setState({
-        //             dataList: result.data.data
-        //         })
-        //     }
-        // }).catch(error => {
-        //     return error;
-        // })
         let articleInfo = {
-            method: 'GET',
-            // data: this.state.userForm
-            }
-            getArticleClick(articleInfo).then((response) => {
-              console.log(response)
-            }).catch((error)=>{
-              console.log(error)
+            method: 'GET'
+        }
+        getArticleClick(articleInfo).then((response) => {
+            this.setState({
+                dataList: response.data
             })
+        }).catch((error) => {
+            console.log(error)
+        })
     }
     render() {
         return (

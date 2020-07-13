@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as apiUrl from './ApiURL';
-import {notification} from 'antd';
+import { notification } from 'antd';
 
 const key = 'keepOnlyOne';
 
@@ -35,10 +35,10 @@ function getDataFromServer(apiUrl, configObj) {
                 'token': window.sessionStorage.getItem('token') || ''
             }
         }).then(function (response) {
-            if(response){
-                if (response.data && response.data.code) {
-                    resolve(response);
-                }else {
+            if (response) {
+                if (response.data && response.data.status) {
+                    resolve(response.data);
+                } else {
                     notification.error({
                         key,
                         message: '操作失败',
@@ -46,7 +46,7 @@ function getDataFromServer(apiUrl, configObj) {
                     });
                     resolve(response);
                 }
-            }else {
+            } else {
                 //处理特殊的情况就是response返回什么也没有
                 notification.error({
                     key,
