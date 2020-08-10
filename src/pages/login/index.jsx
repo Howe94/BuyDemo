@@ -69,8 +69,7 @@ class index extends Component {
   checkUserName(rule,value,callback) {
     const reg = /^[a-zA-Z0-9_\ue00-\u9fa5]+$/;
     if (!reg.test(value)) {
-      console.log("登录校验失败")
-      return Promise.reject('仅允许输入汉字、字母、数字和下划线')
+      return Promise.reject('仅允许输入汉字、字母、数字和下划线');
     }
   }
 
