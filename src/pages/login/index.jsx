@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Button } from 'antd';
-// 先引入组件
 import { loginClick } from '../../api/Api';
 import './index.scss'
 const FormItem = Form.Item;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Avatar, Button } from 'antd';
+import { getAuthorsList } from '../../api/Api'
 import {
     PlusOutlined,
     SyncOutlined
@@ -27,10 +28,10 @@ function Content(props) {
                 </a>
                 <a href="http://localhost:3000/#/sign/sign-in"><PlusOutlined /> 关注</a>
                 <a href={item.authSrc} className="name">
-                    {item.name}
+                    {item.authorName}
                 </a>
-                <p>粉丝量{item.fanNum}人</p>
-                
+                <p>粉丝量{item.fans}人</p>
+
             </div>
         )
     })
@@ -54,39 +55,36 @@ class index extends Component {
                     key: '124'
                 }
             ],
-            authList: [
-                {
-                    avatar: 'https://upload.jianshu.io/users/upload_avatars/7290998/f64f5ef0-def0-4b26-beb3-b9d88f060ba0.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp',
-                    name: '念远坏人',
-                    fanNum: '232121',
-                    authSrc:"https://www.jianshu.com/u/51b4ef597b53?utm_source=desktop&utm_medium=index-users"
-                },
-                {
-                    avatar: 'https://upload.jianshu.io/users/upload_avatars/7290998/f64f5ef0-def0-4b26-beb3-b9d88f060ba0.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp',
-                    name: '念远坏人',
-                    fanNum: '232121',
-                    authSrc:"https://www.jianshu.com/u/51b4ef597b53?utm_source=desktop&utm_medium=index-users"
-                },
-                {
-                    avatar: 'https://upload.jianshu.io/users/upload_avatars/7290998/f64f5ef0-def0-4b26-beb3-b9d88f060ba0.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp',
-                    name: '念远坏人',
-                    fanNum: '232121',
-                    authSrc:"https://www.jianshu.com/u/51b4ef597b53?utm_source=desktop&utm_medium=index-users"
-                },
-                {
-                    avatar: 'https://upload.jianshu.io/users/upload_avatars/7290998/f64f5ef0-def0-4b26-beb3-b9d88f060ba0.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp',
-                    name: '念远坏人',
-                    fanNum: '232121',
-                    authSrc:"https://www.jianshu.com/u/51b4ef597b53?utm_source=desktop&utm_medium=index-users"
-                }
-            ]
+            authList: [],
+            changeAuthorIndex : 0,//初始化前三条推荐作者数据
         }
     }
+    getAuthorsList = () => {
+        let authortemp = {
+            method: 'GET',
+            params: {
+                startIndex: this.state.changeAuthorIndex,
+                endIndex: this.state.changeAuthorIndex + 3,
+            }
+        }
+        getAuthorsList(authortemp).then((response) => {
+            this.setState({
+                authList: response.data
+            })
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
     changOtherAuthers() {
+        this.state.changeAuthorIndex += 3
+        this.getAuthorsList()
         document.getElementsByClassName("anticon-sync")[0].children[0].setAttribute('class', 'anticon-spin');
         setTimeout(() => {
             document.getElementsByClassName("anticon-sync")[0].children[0].removeAttribute('class', 'anticon-spin')
-        },1000)
+        }, 1000)
+    }
+    componentWillMount() {
+        this.getAuthorsList()
     }
     render() {
 
@@ -98,7 +96,7 @@ class index extends Component {
                 <div className="recommendAuthor">
                     <div className="title">
                         推荐作者
-                         <Button type="text" className="change-other"  onClick={this.changOtherAuthers.bind(this)}><SyncOutlined />换一批</Button>
+                         <Button type="text" className="change-other" onClick={this.changOtherAuthers.bind(this)}><SyncOutlined />换一批</Button>
                     </div>
                     <div className="content-main">
                         <Content authList={this.state.authList}></Content>

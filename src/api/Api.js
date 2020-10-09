@@ -75,3 +75,7 @@ export function loginClick(configObj) {
 export function getArticleClick(configObj) {
     return getDataFromServer(apiUrl.getArticleList, configObj);
 }
+//获取作者列表
+export function getAuthorsList(configObj) {
+    return getDataFromServer(apiUrl.getAuthorsList, configObj);
+}

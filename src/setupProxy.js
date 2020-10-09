@@ -7,20 +7,12 @@ module.exports = function (app) {
     createProxyMiddleware('/article', {
     target: 'http://localhost:8001',
     changeOrigin: true,
-    // ws: true,
-    // pathRewrite: {
-    //   '^/article': 'http://localhost:3000' //路径重写 (正常请求接口的简写)
-    // }
     })
   )
   app.use(
     createProxyMiddleware('/users', {
     target: 'http://localhost:8001',
     changeOrigin: true,
-    // ws: true,
-    // pathRewrite: {
-    //   '^/article': 'http://localhost:3000' //路径重写 (正常请求接口的简写)
-    // }
     })
   )
 }
